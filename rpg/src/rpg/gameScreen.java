@@ -68,23 +68,20 @@ public class gameScreen implements ActionListener {
 
         gameStart.add(start);
 
-        //segment layouts
+        segmentLayouts();
+        screenSegments();
+        addButtons();
+        initializeScreenAndRunGame();
+    }
 
-        battleScreen.setLayout(screenLayout);
-        battleMenu.setLayout(menuLayout);
-        battleDetails.setLayout(detailsLayout);
+    private void initializeScreenAndRunGame() {
+        screen.add(gameStart);
+        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        screen.setSize(1000, 800);
+        screen.setVisible(true);
+    }
 
-
-        // screen segements
-
-        battleScreen.add(charIcon);
-        battleScreen.add(enemyIcon);
-        battleScreen.add(battleMenu);
-        battleScreen.add(battleDetails);
-
-
-        // buttons
-
+    private void addButtons() {
         battleMenu.add(attack);
         battleMenu.add(skills);
         battleMenu.add(defend);
@@ -92,17 +89,19 @@ public class gameScreen implements ActionListener {
 
         battleDetails.add(statScreen);
         battleDetails.add(battleUpdateScreen);
-        
-        /*
-            Game Dimensions
-        */
+    }
 
-        screen.add(gameStart);
-        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        screen.setSize(1000, 800);
-        screen.setVisible(true);
+    private void screenSegments() {
+        battleScreen.add(charIcon);
+        battleScreen.add(enemyIcon);
+        battleScreen.add(battleMenu);
+        battleScreen.add(battleDetails);
+    }
 
-
+    private void segmentLayouts() {
+        battleScreen.setLayout(screenLayout);
+        battleMenu.setLayout(menuLayout);
+        battleDetails.setLayout(detailsLayout);
     }
 
     @Override
