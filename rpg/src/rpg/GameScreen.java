@@ -18,40 +18,40 @@ import java.io.IOException;
 
 public class GameScreen {
 
-    BattleSystem combat = new BattleSystem();
+    final BattleSystem combat = new BattleSystem();
 
-    ImageIcon characterPic = getIcon("Character.jpg");
-    ImageIcon enemyPic = getIcon("Monster.jpg");
+    final ImageIcon characterPic = getIcon("Character.jpg");
+    final ImageIcon enemyPic = getIcon("Monster.jpg");
 
-    Combatant player = new Combatant(10, 5);
-    Combatant enemy = new Combatant(10, 0);
+    final Combatant player = new Combatant(10, 5);
+    final Combatant enemy = new Combatant(10, 0);
 
-    String gameName = "Title";
+    final String gameName = "Title";
     String battleText = "";
 
 
-    GridLayout screenLayout = new GridLayout(2, 2);
-    GridLayout menuLayout = new GridLayout(0, 1);
-    GridLayout detailsLayout = new GridLayout(2, 1);
+    final GridLayout screenLayout = new GridLayout(2, 2);
+    final GridLayout menuLayout = new GridLayout(0, 1);
+    final GridLayout detailsLayout = new GridLayout(2, 1);
 
-    JFrame screen = new JFrame(gameName);
-    JPanel gameStart = new JPanel();
-    JPanel battleScreen = new JPanel();
-    JPanel battleMenu = new JPanel();
-    JPanel battleDetails = new JPanel();
+    final JFrame screen = new JFrame(gameName);
+    final JPanel gameStart = new JPanel();
+    final JPanel battleScreen = new JPanel();
+    final JPanel battleMenu = new JPanel();
+    final JPanel battleDetails = new JPanel();
 
 
-    JLabel charIcon = new JLabel(characterPic);
-    JLabel enemyIcon = new JLabel(enemyPic);
-    JLabel statScreen = new JLabel();
-    JTextArea battleUpdateScreen = new JTextArea();
+    final JLabel charIcon = new JLabel(characterPic);
+    final JLabel enemyIcon = new JLabel(enemyPic);
+    final JLabel statScreen = new JLabel();
+    final JTextArea battleUpdateScreen = new JTextArea();
 
-    JButton start = new JButton("Start Game");
+    final JButton start = new JButton("Start Game");
 
-    JButton attack = new JButton("Attack");
-    JButton skills = new JButton("Skills & Magic");
-    JButton defend = new JButton("Defend");
-    JButton items = new JButton("Items");
+    final JButton attack = new JButton("Attack");
+    final JButton skills = new JButton("Skills & Magic");
+    final JButton defend = new JButton("Defend");
+    final JButton items = new JButton("Items");
 
 
     public GameScreen() throws IOException {
@@ -70,7 +70,7 @@ public class GameScreen {
 
     final ActionListener startListener = new GameScreenActionListener() {
         @Override
-        public void handleEvent(ActionEvent event) {
+        public void handleEvent(final ActionEvent event) {
             gameStart.setVisible(false);
             screen.remove(gameStart);
             screen.add(battleScreen);
@@ -79,7 +79,7 @@ public class GameScreen {
 
     final ActionListener attackListener = new GameScreenActionListener() {
         @Override
-        public void handleEvent(ActionEvent event) {
+        public void handleEvent(final ActionEvent event) {
             battleText += combat.attack(player, enemy) + "\n";
 
             battleUpdateScreen.setText(battleText);
@@ -89,19 +89,19 @@ public class GameScreen {
 
     final ActionListener skillsMagicListener = new GameScreenActionListener() {
         @Override
-        public void handleEvent(ActionEvent event) {
+        public void handleEvent(final ActionEvent event) {
         }
     };
 
     final ActionListener defendListener = new GameScreenActionListener() {
         @Override
-        public void handleEvent(ActionEvent event) {
+        public void handleEvent(final ActionEvent event) {
         }
     };
 
     final ActionListener itemsListener = new GameScreenActionListener() {
         @Override
-        public void handleEvent(ActionEvent event) {
+        public void handleEvent(final ActionEvent event) {
         }
     };
 
@@ -153,7 +153,7 @@ public class GameScreen {
 
 
     private ImageIcon getIcon(final String picName) throws IOException {
-        InputStream iconStream = getIconStream(picName);
+        final InputStream iconStream = getIconStream(picName);
         return new ImageIcon(ImageIO.read(iconStream));
     }
 
