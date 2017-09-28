@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 import java.io.InputStream;
 import java.io.IOException;
 
-public class GameScreen implements ActionListener {
+public class GameScreen {
 
     BattleSystem combat = new BattleSystem();
 
@@ -58,13 +58,60 @@ public class GameScreen implements ActionListener {
 
     }
 
+    abstract class GameScreenActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(final ActionEvent event) {
+            handleEvent(event);
+            screen.repaint();
+        }
+
+        public abstract void handleEvent(final ActionEvent event);
+    }
+
+    final ActionListener startListener = new GameScreenActionListener() {
+        @Override
+        public void handleEvent(ActionEvent event) {
+            gameStart.setVisible(false);
+            screen.remove(gameStart);
+            screen.add(battleScreen);
+        }
+    };
+
+    final ActionListener attackListener = new GameScreenActionListener() {
+        @Override
+        public void handleEvent(ActionEvent event) {
+            battleText += combat.attack(player, enemy) + "\n";
+
+            battleUpdateScreen.setText(battleText);
+            battleUpdateScreen.repaint();
+        }
+    };
+
+    final ActionListener skillsMagicListener = new GameScreenActionListener() {
+        @Override
+        public void handleEvent(ActionEvent event) {
+        }
+    };
+
+    final ActionListener defendListener = new GameScreenActionListener() {
+        @Override
+        public void handleEvent(ActionEvent event) {
+        }
+    };
+
+    final ActionListener itemsListener = new GameScreenActionListener() {
+        @Override
+        public void handleEvent(ActionEvent event) {
+        }
+    };
+
     public void generateScreen() {
 
-        start.addActionListener(this);
-        attack.addActionListener(this);
-        skills.addActionListener(this);
-        defend.addActionListener(this);
-        items.addActionListener(this);
+        start.addActionListener(startListener);
+        attack.addActionListener(attackListener);
+        skills.addActionListener(skillsMagicListener);
+        defend.addActionListener(defendListener);
+        items.addActionListener(itemsListener);
 
         gameStart.add(start);
 
@@ -104,36 +151,6 @@ public class GameScreen implements ActionListener {
         battleDetails.setLayout(detailsLayout);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-
-        String action = event.getActionCommand();
-
-        if (action.equals("Start Game")) {
-            gameStart.setVisible(false);
-            screen.remove(gameStart);
-            screen.add(battleScreen);
-
-
-        } else if (action.equals("Attack")) {
-
-            battleText += combat.attack(player, enemy) + "\n";
-
-            battleUpdateScreen.setText(battleText);
-            battleUpdateScreen.repaint();
-        } else if (action.equals("Skills & Magic")) {
-
-        } else if (action.equals("Defend")) {
-
-        } else if (action.equals("Items")) {
-
-        }
-
-
-        screen.repaint();
-
-
-    }
 
     private ImageIcon getIcon(final String picName) throws IOException {
         InputStream iconStream = getIconStream(picName);
