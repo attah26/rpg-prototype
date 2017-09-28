@@ -5,6 +5,8 @@
  */
 package rpg;
 
+import java.io.IOException;
+
 /**
  *
  * @author Isaac
@@ -16,13 +18,10 @@ public class Rpg {
      */
     
     
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
-        gameScreen runGame = new gameScreen();
+    public static void main(String[] args) throws IOException {
+        GameScreen runGame = new GameScreen();
         
         runGame.generateScreen();
-        
     }
     
 }

@@ -9,6 +9,6 @@ package rpg;
  *
  * @author Isaac
  */
-public class textPrinter {
+public class TextPrinter {
     
 }
