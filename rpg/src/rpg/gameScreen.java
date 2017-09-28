@@ -20,10 +20,8 @@ public class gameScreen implements ActionListener {
 
     battleSystem combat = new battleSystem();
 
-    InputStream characterPicStream = getClass().getResourceAsStream("/resources/icons/Character.jpg");
-    ImageIcon characterPic = new ImageIcon(ImageIO.read(characterPicStream));
-    InputStream enemyPicStream = getClass().getResourceAsStream("/resources/icons/Monster.jpg");
-    ImageIcon enemyPic = new ImageIcon(ImageIO.read(enemyPicStream));
+    ImageIcon characterPic = getIcon("Character.jpg");
+    ImageIcon enemyPic = getIcon("Monster.jpg");
 
     Combatant player = new Combatant(10, 5);
     Combatant enemy = new Combatant(10, 0);
@@ -108,9 +106,9 @@ public class gameScreen implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
-        String action = e.getActionCommand();
+        String action = event.getActionCommand();
 
         if (action.equals("Start Game")) {
             gameStart.setVisible(false);
@@ -138,5 +136,12 @@ public class gameScreen implements ActionListener {
 
     }
 
+    private ImageIcon getIcon(final String picName) throws IOException {
+        InputStream iconStream = getIconStream(picName);
+        return new ImageIcon(ImageIO.read(iconStream));
+    }
 
+    private InputStream getIconStream(final String picName) {
+        return getClass().getResourceAsStream("/resources/icons/" + picName);
+    }
 }
