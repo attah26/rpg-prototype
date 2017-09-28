@@ -9,7 +9,7 @@ package rpg;
  *
  * @author Isaac
  */
-public class battleSystem {
+public class BattleSystem {
     
     int damage;
     

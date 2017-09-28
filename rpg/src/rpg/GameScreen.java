@@ -16,9 +16,9 @@ import javax.imageio.ImageIO;
 import java.io.InputStream;
 import java.io.IOException;
 
-public class gameScreen implements ActionListener {
+public class GameScreen implements ActionListener {
 
-    battleSystem combat = new battleSystem();
+    BattleSystem combat = new BattleSystem();
 
     ImageIcon characterPic = getIcon("Character.jpg");
     ImageIcon enemyPic = getIcon("Monster.jpg");
@@ -54,7 +54,7 @@ public class gameScreen implements ActionListener {
     JButton items = new JButton("Items");
 
 
-    public gameScreen() throws IOException {
+    public GameScreen() throws IOException {
 
     }
 
